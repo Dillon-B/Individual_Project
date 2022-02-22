@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-enum TokenType {
+ public enum TokenType {
     // Single-character tokens.
     LBR, RBR, LCBR, RCBR,
     COMMA, PERIOD, MINUS, PLUS, SEMICOLON, DIVIDE, MULTIPLY,
