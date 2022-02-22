@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static TypeCheck.TokenType.*;
+
+import Compile.Main;
 import TypeCheck.Token;
 import TypeCheck.TokenType;
 
@@ -44,6 +46,10 @@ public class Scanner {
             case '+': addToken(PLUS); break;
             case ';': addToken(SEMICOLON); break;
             case '*': addToken(MULTIPLY); break;
+
+            default:
+                Main.error(line, "Unexpected character.");
+                break;
 
         }
     }
