@@ -11,9 +11,9 @@ import java.util.Map;
     COMMA, PERIOD, MINUS, PLUS, SEMICOLON, DIVIDE, MULTIPLY,
 
     // Multi-character tokens
-    EQUAL, EQUAL_EQUAL,
-    GREATER, GREATER_EQUAL,
-    LESS, LESS_EQUAL,
+    EQUAL, EQUALEQUAL,
+    GREATERTHAN, GREATEREQUAL,
+    LESSTHAN, LESSEQUAL,
 
     // Literals
     STRING, INT, BOOL,
