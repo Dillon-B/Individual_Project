@@ -1,5 +1,7 @@
 package Compile;
 
+import TypeCheck.Token;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,8 +10,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Scanner;
-import TypeCheck.Token;
-import Scan.*;
 
 public class Main {
     static boolean hasError = false;
