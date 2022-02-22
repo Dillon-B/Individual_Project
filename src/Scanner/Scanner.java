@@ -30,6 +30,15 @@ public class Scanner {
         tokens.add(new Token(EOF, "", null, line));
         return tokens;
     }
+
+    private void scanToken () {
+        char c = advance();
+        switch (c) {
+
+        }
+    }
+
+
     private boolean isAtEnd() {
         return current >= source.length();
     }
