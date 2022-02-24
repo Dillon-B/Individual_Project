@@ -22,7 +22,7 @@ public class Scanner {
         this.source = source;
     }
 
-    List<Token> scanTokens() {
+   public List<Token> scanTokens() {
         while (!isAtEnd()) {
             start = current;
             scanToken();
