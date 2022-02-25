@@ -60,7 +60,7 @@ public class Scanner {
 
             case '/':
                 if (match('/')) {
-                    // A comment goes until the end of the line.
+                    // A comment requires the entire line
                     while (peek() != '\n' && !isAtEnd()) advance();
                 } else {
                     addToken(DIVIDE);
