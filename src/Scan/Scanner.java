@@ -45,6 +45,18 @@ public class Scanner {
             case '+': addToken(PLUS); break;
             case ';': addToken(SEMICOLON); break;
             case '*': addToken(MULTIPLY); break;
+            case '!':
+                addToken(match('=') ? NOTEQUAL : EXCLAIM);
+                break;
+            case '=':
+                addToken(match('=') ? EQUALEQUAL : EQUAL);
+                break;
+            case '<':
+                addToken(match('=') ? LESSEQUAL : LESSTHAN);
+                break;
+            case '>':
+                addToken(match('=') ? GREATEREQUAL : GREATERTHAN);
+                break;
 
             default:
                 Main.error(line, "Unexpected character.");
@@ -60,6 +72,14 @@ public class Scanner {
 
     private char advance() {
         return source.charAt(current++);
+    }
+
+    private boolean match(char expected) {
+        if (isAtEnd()) return false;
+        if (source.charAt(current) != expected) return false;
+
+        current++;
+        return true;
     }
 
     private void addToken(TokenType type) {
