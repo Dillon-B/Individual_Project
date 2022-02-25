@@ -58,6 +58,15 @@ public class Scanner {
                 addToken(match('=') ? GREATEREQUAL : GREATERTHAN);
                 break;
 
+            case '/':
+                if (match('/')) {
+                    // A comment goes until the end of the line.
+                    while (peek() != '\n' && !isAtEnd()) advance();
+                } else {
+                    addToken(DIVIDE);
+                }
+                break;
+
             default:
                 Main.error(line, "Unexpected character.");
                 break;
@@ -89,5 +98,10 @@ public class Scanner {
     private void addToken(TokenType type, Object literal) {
         String text = source.substring(start, current);
         tokens.add(new Token(type, text, literal, line));
+    }
+
+    private char peek() {
+        if (isAtEnd()) return '\0';
+        return source.charAt(current);
     }
 }
