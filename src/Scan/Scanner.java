@@ -66,6 +66,14 @@ public class Scanner {
                     addToken(DIVIDE);
                 }
                 break;
+                // Ignoring whitespaces
+            case ' ':
+            case '\r':
+            case '\t':
+                break;
+            case '\n':
+                line++;
+                break;
 
             default:
                 Main.error(line, "Unexpected character.");
