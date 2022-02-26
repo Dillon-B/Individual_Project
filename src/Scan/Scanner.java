@@ -75,11 +75,29 @@ public class Scanner {
                 line++;
                 break;
 
+            case '"':
+                string();
+                break;
+
             default:
                 Main.error(line, "Unexpected character.");
                 break;
 
         }
+    }
+
+    private void string() {
+        while (peek() != '"' && !isAtEnd()) {
+            if (peek() == '\n') line++; advance();
+        }
+        if (isAtEnd()) {
+            Main.error(line, "Undetermined String");
+            return;
+        }
+        advance();
+
+        String value = source.substring(start + 1, current - 1);
+        addToken(STRING, value);
     }
 
 
