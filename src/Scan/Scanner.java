@@ -33,7 +33,7 @@ public class Scanner {
     }
 
     private void scanToken () {
-        char c = advance();
+        char c = nextChar();
         switch (c) {
             case '(': addToken(LBR); break;
             case ')': addToken(RBR); break;
@@ -61,7 +61,7 @@ public class Scanner {
             case '/':
                 if (match('/')) {
                     // A comment requires the entire line
-                    while (peek() != '\n' && !isAtEnd()) advance();
+                    while (check() != '\n' && !isAtEnd()) nextChar();
                 } else {
                     addToken(DIVIDE);
                 }
@@ -80,21 +80,25 @@ public class Scanner {
                 break;
 
             default:
-                Main.error(line, "Unexpected character.");
-                break;
+                if (checkIfDigit(c)) {
+                    integer();
+                } else {
+                    Main.error(line, "Unexpected character.");
+                    break;
+                }
 
         }
     }
 
     private void string() {
-        while (peek() != '"' && !isAtEnd()) {
-            if (peek() == '\n') line++; advance();
+        while (check() != '"' && !isAtEnd()) {
+            if (check() == '\n') line++; nextChar();
         }
         if (isAtEnd()) {
             Main.error(line, "Undetermined String");
             return;
         }
-        advance();
+        nextChar();
 
         String value = source.substring(start + 1, current - 1);
         addToken(STRING, value);
@@ -105,7 +109,7 @@ public class Scanner {
         return current >= source.length();
     }
 
-    private char advance() {
+    private char nextChar() {
         return source.charAt(current++);
     }
 
@@ -126,8 +130,16 @@ public class Scanner {
         tokens.add(new Token(type, text, literal, line));
     }
 
-    private char peek() {
+    private char check() {
         if (isAtEnd()) return '\0';
         return source.charAt(current);
+    }
+
+    private boolean checkIfDigit(char c) {
+        return c >= '0' && c <= '9';
+    }
+
+    private void integer() {
+
     }
 }
