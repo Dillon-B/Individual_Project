@@ -140,6 +140,16 @@ public class Scanner {
     }
 
     private void integer() {
+        while (checkIfDigit(check())) nextChar();
+        if (check() == '.' && checkIfDigit(checkNextChar())) {
+            nextChar();
+            while (checkIfDigit(check())) nextChar();
+        }
+        addToken(INT, Double.parseDouble(source.substring(start,current)));
+    }
 
+    private char checkNextChar() {
+        if (current + 1 >= source.length()) return '\0';
+        return source.charAt(current + 1);
     }
 }
