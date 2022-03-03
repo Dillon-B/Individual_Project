@@ -8,7 +8,7 @@ import java.util.Map;
  public enum TokenType {
     // Single-character tokens.
     LBR, RBR, LCBR, RCBR,
-    COMMA, PERIOD, MINUS, PLUS, SEMICOLON, DIVIDE, MULTIPLY,
+    COMMA, PERIOD, MINUS, PLUS, SEMICOLON, DIVIDE, MULTIPLY, COLON,
 
     // Multi-character tokens
     EXCLAIM ,NOTEQUAL,
