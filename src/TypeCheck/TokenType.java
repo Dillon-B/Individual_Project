@@ -17,7 +17,7 @@ import java.util.Map;
     LESSTHAN, LESSEQUAL,
 
     // Literals
-    STRING, INT, BOOL,
+    STRING, INT, BOOLEAN,
 
     // Key-Words
     AND, CLASS, ELSE, FALSE, DEF, FOR, IF, NOT, OR,
