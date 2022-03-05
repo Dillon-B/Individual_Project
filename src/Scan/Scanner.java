@@ -83,7 +83,10 @@ public class Scanner {
             default:
                 if (checkIfDigit(c)) {
                     integer();
-                } else {
+                } else if (checkIfLetter(c)) {
+                    id();
+                }
+                else {
                     Main.error(line, "Unexpected character.");
                     break;
                 }
@@ -152,5 +155,21 @@ public class Scanner {
     private char checkNextChar() {
         if (current + 1 >= source.length()) return '\0';
         return source.charAt(current + 1);
+    }
+
+    private boolean checkIfLetter(char c) {
+        return (c >= 'a' && c <= 'z') ||
+                (c >= 'A' && c <= 'Z') ||
+                c == '_';
+    }
+
+    private boolean checkLetterOrNum(char c) {
+        return checkIfLetter(c) || checkIfDigit(c);
+    }
+
+    private void id() {
+        while (checkLetterOrNum(check())) nextChar();
+
+        addToken(ID);
     }
 }
