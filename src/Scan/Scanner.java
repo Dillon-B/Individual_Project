@@ -105,7 +105,7 @@ public class Scanner {
         nextChar();
 
         String value = source.substring(start + 1, current - 1);
-        addToken(STRING, value);
+        addTokenPrint(STRING, value);
     }
 
 
@@ -126,10 +126,10 @@ public class Scanner {
     }
 
     private void addToken(TokenType type) {
-        addToken(type, null);
+        addTokenPrint(type, null);
     }
 
-    private void addToken(TokenType type, Object literal) {
+    private void addTokenPrint(TokenType type, Object literal) {
         String text = source.substring(start, current);
         tokens.add(new Token(type, text, literal, line));
     }
@@ -149,7 +149,7 @@ public class Scanner {
             nextChar();
             while (checkIfDigit(check())) nextChar();
         }
-        addToken(INT, Double.parseDouble(source.substring(start,current)));
+        addTokenPrint(INT, Double.parseDouble(source.substring(start,current)));
     }
 
     private char checkNextChar() {
