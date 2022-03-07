@@ -1,7 +1,9 @@
 package Scan;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static TypeCheck.TokenType.*;
 
@@ -94,6 +96,31 @@ public class Scanner {
         }
     }
 
+    private static final Map<String, TokenType> keywords;
+
+    static {
+        keywords = new HashMap<>();
+        keywords.put("and",    AND);
+        keywords.put("class",  CLASS);
+        keywords.put("else",   ELSE);
+        keywords.put("false",  FALSE);
+        keywords.put("for",    FOR);
+        keywords.put("if",     IF);
+        keywords.put("not",    NOT);
+        keywords.put("or",     OR);
+        keywords.put("print",  PRINT);
+        keywords.put("return", RETURN);
+        keywords.put("super",  SUPER);
+        keywords.put("this",   THIS);
+        keywords.put("true",   TRUE);
+        keywords.put("var",    VAR);
+        keywords.put("while",  WHILE);
+        keywords.put("def", DEF);
+        keywords.put("main", MAIN);
+        keywords.put("new", NEW);
+        keywords.put("do", DO);
+    }
+
     private void string() {
         while (check() != '"' && !isAtEnd()) {
             if (check() == '\n') line++; nextChar();
@@ -170,6 +197,11 @@ public class Scanner {
     private void id() {
         while (checkLetterOrNum(check())) nextChar();
 
-        addToken(ID);
+        String text = source.substring(start, current);
+        TokenType type = keywords.get(text);
+        if (type == null) type = ID;
+        addToken(type);
+
+       // addToken(ID);
     }
 }
