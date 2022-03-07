@@ -21,7 +21,7 @@ import java.util.Map;
 
     // Key-Words
     AND, CLASS, ELSE, FALSE, FUNCTION, FOR, IF, NOT, OR,
-    PRINT, RETURN, SUPER, THIS, TRUE, VAR, WHILE, DO, FUNC_NAME, NEW, ID,
+    PRINT, RETURN, SUPER, THIS, TRUE, VAR, WHILE, DO, MAIN, NEW, ID,
 
     EOF
 }
