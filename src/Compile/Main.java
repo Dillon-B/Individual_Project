@@ -26,7 +26,6 @@ public class Main {
     }
 
     private static void runFile(String path) throws IOException {
-        path = ''
         byte[] bytes = Files.readAllBytes(Paths.get(path));
         run(new String(bytes, Charset.defaultCharset()));
         if (hasError) System.exit(65);
