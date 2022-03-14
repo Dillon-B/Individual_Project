@@ -4,7 +4,7 @@ public enum Op {
     ;
     private final String name;
 
-    private Op(String name) {
+    Op(String name) {
         this.name = name;
     }
 
