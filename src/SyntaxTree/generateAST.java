@@ -12,5 +12,6 @@ public class generateAST {
             System.exit(64);
         }
         String outputDir = args[0];
+       // defineAst(outputDir, "Exp", Arrays.asList());
     }
 }
