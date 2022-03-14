@@ -1,4 +1,4 @@
 package SyntaxTree;
 
-abstract class Exp {
+public abstract class Exp {
 }
