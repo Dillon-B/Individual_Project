@@ -49,20 +49,20 @@ public class Scanner {
             case '*': addToken(MULTIPLY); break;
             case ':': addToken(COLON); break;
             case '!':
-                addToken(match('=') ? NOTEQUAL : EXCLAIM);
+                addToken(matchNext('=') ? NOTEQUAL : EXCLAIM);
                 break;
             case '=':
-                addToken(match('=') ? EQUALEQUAL : EQUAL);
+                addToken(matchNext('=') ? EQUALEQUAL : EQUAL);
                 break;
             case '<':
-                addToken(match('=') ? LESSEQUAL : LESSTHAN);
+                addToken(matchNext('=') ? LESSEQUAL : LESSTHAN);
                 break;
             case '>':
-                addToken(match('=') ? GREATEREQUAL : GREATERTHAN);
+                addToken(matchNext('=') ? GREATEREQUAL : GREATERTHAN);
                 break;
 
             case '/':
-                if (match('/')) {
+                if (matchNext('/')) {
                     // A comment requires the entire line
                     while (check() != '\n' && !isAtEnd()) nextChar();
                 } else {
@@ -144,7 +144,7 @@ public class Scanner {
         return source.charAt(current++);
     }
 
-    private boolean match(char expected) {
+    private boolean matchNext(char expected) {
         if (isAtEnd()) return false;
         if (source.charAt(current) != expected) return false;
 
