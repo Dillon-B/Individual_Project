@@ -1,6 +1,5 @@
 package SyntaxTree;
 
-import Compile.Main;
 
 public abstract class Exp {
 
