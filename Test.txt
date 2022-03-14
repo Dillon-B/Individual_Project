@@ -1,7 +1,10 @@
 
 def main:
     print (4 + 3)
-    if ( 4 == 3):
+    if ( 4 >= 3):
         print 3
-    else
+    else if ( 3 <= 5)
         print 4
+    else
+        print 5
+    return 50
