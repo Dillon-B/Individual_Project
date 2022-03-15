@@ -119,6 +119,7 @@ public class Scanner {
         keywords.put("main", MAIN);
         keywords.put("new", NEW);
         keywords.put("do", DO);
+        keywords.put("bool", BOOLEAN);
     }
 
     private void string() {
