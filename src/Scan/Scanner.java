@@ -103,7 +103,7 @@ public class Scanner {
         keywords.put("and",    AND);
         keywords.put("class",  CLASS);
         keywords.put("else",   ELSE);
-        keywords.put("false",  FALSE);
+        keywords.put("False",  FALSE);
         keywords.put("for",    FOR);
         keywords.put("if",     IF);
         keywords.put("not",    NOT);
@@ -112,7 +112,7 @@ public class Scanner {
         keywords.put("return", RETURN);
         keywords.put("super",  SUPER);
         keywords.put("this",   THIS);
-        keywords.put("true",   TRUE);
+        keywords.put("True",   TRUE);
         keywords.put("var",    VAR);
         keywords.put("while",  WHILE);
         keywords.put("def", FUNCTION);
