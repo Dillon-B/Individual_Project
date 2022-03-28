@@ -40,7 +40,8 @@ public class generateAST {
         writer.close();
     }
 
-    public static void defineType(Writer writer, String baseName, String className, String fields) {
-
+    public static void defineType(PrintWriter writer, String baseName, String className, String fields) {
+        writer.println("  static class " + className + " extends " + baseName + " {");
+        writer.println("   " + className + "(" + fields + ")  {");
     }
 }
