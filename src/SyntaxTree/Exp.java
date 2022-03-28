@@ -26,8 +26,8 @@ public abstract class Exp {
         }
         final Object value;
     }
-    static class Float extends Exp {
-        Float(Token operator, Exp right) {
+    static class Eq extends Exp {
+        Eq(Token operator, Exp right) {
             this.operator = operator;
             this.right = right;
         }

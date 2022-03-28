@@ -18,7 +18,7 @@ public class generateAST {
                 "Op : Exp left, Token operator, Exp right",
                 "Stm : Exp expression",
                 "Literal : Object value",
-                "Float : Token operator, Exp right"
+                "Eq : Token operator, Exp right"
         ));
     }
 
