@@ -4,8 +4,8 @@ package SyntaxTree;
 import TypeCheck.Token;
 
 public abstract class Exp {
-    static class Op extends Exp {
-        Op(Exp left, Token operator, Exp right) {
+    public static class Op extends Exp {
+        public Op(Exp left, Token operator, Exp right) {
             this.left = left;
             this.operator = operator;
             this.right = right;
@@ -14,20 +14,20 @@ public abstract class Exp {
         final Token operator;
         final Exp right;
     }
-    static class Stm extends Exp {
-        Stm(Exp statement) {
+    public static class Stm extends Exp {
+        public Stm(Exp statement) {
             this.statement = statement;
         }
         final Exp statement;
     }
-    static class Literal extends Exp {
-        Literal(Object value) {
+    public static class Literal extends Exp {
+        public Literal(Object value) {
             this.value = value;
         }
         final Object value;
     }
-    static class Eq extends Exp {
-        Eq(Token operator, Exp right) {
+    public static class Eq extends Exp {
+       public Eq(Token operator, Exp right) {
             this.operator = operator;
             this.right = right;
         }
