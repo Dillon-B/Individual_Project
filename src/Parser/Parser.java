@@ -32,6 +32,10 @@ public class Parser {
         return exp;
     }
 
+    private Exp compare() {
+        return null;
+    }
+
     private boolean match(TokenType... types){
         for (TokenType type: types) {
             if (check(type)) {
@@ -44,7 +48,24 @@ public class Parser {
 
     private boolean check(TokenType type){
         if (isAtEnd()) return false;
-        return peek().type == type;
+        return token().type == type;
+    }
+
+    private Token checkNextChar() {
+        if (!isAtEnd()) current++;
+        return lastChar();
+    }
+
+    private boolean isAtEnd() {
+        return token().type == EOF;
+    }
+
+    private Token token() {
+        return tokens.get(current);
+    }
+
+    private Token lastChar() {
+        return tokens.get(current-1);
     }
 
 }

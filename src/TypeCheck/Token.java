@@ -2,7 +2,7 @@ package TypeCheck;
 
 public class Token {
 
-    final TokenType type;
+    public final TokenType type;
     final String lex;
     final Object literal;
     final int line;
