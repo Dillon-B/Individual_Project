@@ -5,7 +5,9 @@ import java.util.List;
 import SyntaxTree.Exp;
 import TypeCheck.Token;
 import TypeCheck.TokenType;
-import TypeCheck.TokenType.*;
+import static TypeCheck.TokenType.*;
+
+
 
 public class Parser {
     private final List<Token> tokens;
@@ -22,7 +24,7 @@ public class Parser {
 
     private Exp Eq() {
         Exp exp = compare();
-        while (match(NOT_EQUAL, EQUAL_EQUAL)) {
+        while (match(NOTEQUAL, EQUAL)) {
             Token op = lastChar();
             Exp exp2 = compare();
             exp = new Exp.Op(exp, op, exp2);
