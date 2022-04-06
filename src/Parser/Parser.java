@@ -29,6 +29,7 @@ public class Parser {
             Exp exp2 = compare();
             exp = new Exp.Op(exp, op, exp2);
         }
+        return exp;
     }
 
     private boolean match(TokenType... types){
