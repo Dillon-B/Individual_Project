@@ -19,10 +19,10 @@ public class Parser {
     }
 
     private Exp Expression() {
-        return Eq();
+        return Op();
     }
 
-    private Exp Eq() {
+    private Exp Op() {
         Exp exp = compare();
         while (match(NOTEQUAL, EQUAL)) {
             Token op = lastChar();
