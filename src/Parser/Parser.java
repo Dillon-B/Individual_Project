@@ -33,6 +33,17 @@ public class Parser {
     }
 
     private Exp compare() {
+        Exp exp = addMinus();
+
+        while (match(GREATERTHAN,GREATEREQUAL,LESSTHAN,LESSEQUAL)){
+            Token op = lastChar();
+            Exp exp2 = addMinus();
+            exp = new Exp.Op(exp, op, exp2);
+        }
+        return exp;
+    }
+
+    private Exp addMinus() {
         return null;
     }
 
