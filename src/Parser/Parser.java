@@ -44,6 +44,17 @@ public class Parser {
     }
 
     private Exp translate() {
+        Exp exp = factor();
+
+        while(match(PLUS, MINUS)) {
+            Token op = lastChar();
+            Exp exp2 = factor();
+            exp = new Exp.Op(exp, op, exp2);
+        }
+        return exp;
+    }
+
+    private Exp factor(){
         return null;
     }
 
