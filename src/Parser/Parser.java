@@ -35,7 +35,7 @@ public class Parser {
     private Exp compare() {
         Exp exp = translate();
 
-        while (match(GREATERTHAN,GREATEREQUAL,LESSTHAN,LESSEQUAL)){
+        while (match(GREATERTHAN, GREATEREQUAL, LESSTHAN, LESSEQUAL)){
             Token op = lastChar();
             Exp exp2 = translate();
             exp = new Exp.Op(exp, op, exp2);
