@@ -115,7 +115,7 @@ public class Scanner {
         keywords.put("True",   TRUE);
         keywords.put("var",    VAR);
         keywords.put("while",  WHILE);
-        keywords.put("def", FUNCTION);
+        keywords.put("def", DEF);
         keywords.put("main", MAIN);
         keywords.put("new", NEW);
         keywords.put("do", DO);

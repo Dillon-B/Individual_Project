@@ -1,11 +1,6 @@
 package TypeCheck;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
- public enum TokenType {
+public enum TokenType {
     // Single-character tokens.
     LBR, RBR, LCBR, RCBR,
     COMMA, PERIOD, MINUS, PLUS, SEMICOLON, DIVIDE, MULTIPLY, COLON,
@@ -20,7 +15,7 @@ import java.util.Map;
     STRING, INT, BOOLEAN,
 
     // Key-Words
-    AND, CLASS, ELSE, FALSE, FUNCTION, FOR, IF, NOT, OR,
+    AND, CLASS, ELSE, FALSE, DEF, FOR, IF, NOT, OR,
     PRINT, RETURN, SUPER, THIS, TRUE, VAR, WHILE, DO, MAIN, NEW, ID,
 
     EOF

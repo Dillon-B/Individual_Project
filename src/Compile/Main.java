@@ -1,7 +1,11 @@
 package Compile;
 
+import Parser.Parser;
+import SyntaxTree.Exp;
+import SyntaxTree.printAST;
 import TypeCheck.Token;
 import Scan.Scanner;
+import TypeCheck.TokenType;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,13 +51,21 @@ public class Main {
     private static void run(String source) {
         Scanner scanner = new Scanner(source);
         List<Token> tokens = scanner.scanTokens();
+//
+//        // For now, just print the tokens.
+//        for (Token token : tokens) {
+//            System.out.println(token);
 
-        // For now, just print the tokens.
-        for (Token token : tokens) {
-            System.out.println(token);
+        Parser parser = new Parser(tokens);
+        Exp expression = parser.parse();
+
+        // Stop if there was a syntax error.
+        if (hasError) return;
+
+        System.out.println(new printAST().print(expression));
         }
 
-    }
+
 
     public static void error(int line, String message) {
         report(line, " " , message);
@@ -62,6 +74,14 @@ public class Main {
 
     static void report (int line, String pos, String message) {
         System.err.println("[Line" + line + "] Error" + pos + ": " + message );
+    }
+
+    static void error(Token token, String message) {
+        if (token.type == TokenType.EOF) {
+            report(token.line, " at end", message);
+        } else {
+            report(token.line, " at '" + token.lex + "'", message);
+        }
     }
 
 }

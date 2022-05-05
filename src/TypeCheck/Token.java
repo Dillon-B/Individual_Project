@@ -3,9 +3,9 @@ package TypeCheck;
 public class Token {
 
     public final TokenType type;
-    final String lex;
+    public final String lex;
     public final Object literal;
-    final int line;
+    public final int line;
 
     public Token(TokenType type, String lex, Object literal, int line) {
         this.type = type;

@@ -11,12 +11,21 @@ import static TypeCheck.TokenType.*;
 
 
 public class Parser {
+    private static class ParseError extends RuntimeException {}
     private final List<Token> tokens;
     private int current = 0;
 
 
-    Parser(List<Token> tokens) {
+    public Parser(List<Token> tokens) {
         this.tokens = tokens;
+    }
+
+    public Exp parse() {
+        try {
+            return Expression();
+        } catch (ParseError error) {
+            return null;
+        }
     }
 
     private Exp Expression() {
@@ -84,7 +93,7 @@ public class Parser {
             consume(RBR, "Expect ')' after expression.");
             return new Exp.Stm(exp);
         }
-        return null;
+        throw error(token(), "Expect Expression");
     }
 
     private Token consume(TokenType type, String message) {
@@ -92,6 +101,36 @@ public class Parser {
 
         throw error(token(), message);
     }
+
+    private ParseError error(Token token, String message) {
+        Main.error(token.line, message);
+        return new ParseError();
+    }
+
+    private void synchronize() {
+        checkNextChar();
+
+        while (!isAtEnd()) {
+            if (lastChar().type == SEMICOLON) return;
+
+            switch (token().type) {
+                case CLASS:
+                case MAIN:
+                case VAR:
+                case FOR:
+                case IF:
+                case WHILE:
+                case PRINT:
+                case RETURN:
+                case DEF:
+                    return;
+            }
+
+            checkNextChar();
+        }
+    }
+
+
 
 
     private boolean match(TokenType... types){
