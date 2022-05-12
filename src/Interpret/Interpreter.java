@@ -5,7 +5,39 @@ import SyntaxTree.Exp;
 public class Interpreter implements Exp.Visitor<Object>{
     @Override
     public Object visitOpExp(Exp.Op exp) {
-        return null;
+        Object left = evaluate(exp.left);
+        Object right = evaluate(exp.right);
+
+        switch (exp.operator.type) {
+            case NOTEQUAL:
+                return !isEqual(left, right);
+            case EQUALEQUAL:
+                return isEqual(left, right);
+            case GREATERTHAN:
+                return (double)left > (double)right;
+            case GREATEREQUAL:
+                return (double)left >= (double)right;
+            case LESSTHAN:
+                return (double)left < (double)right;
+            case LESSEQUAL:
+                return (double)left <= (double)right;
+            case MINUS:
+                return (double)left - (double)right;
+            case MULTIPLY:
+                return (double)left * (double)right;
+            case DIVIDE:
+                return (double)left / (double)right;
+            case PLUS:
+                if (left instanceof Double && right instanceof Double) {
+                    return (double)left + (double)right;
+                }
+
+                if (left instanceof String && right instanceof String) {
+                    return (String)left + (String)right;
+                }
+                break;
+        }
+    return null;
     }
 
     @Override
@@ -20,10 +52,33 @@ public class Interpreter implements Exp.Visitor<Object>{
 
     @Override
     public Object visitEqExp(Exp.Eq exp) {
+        Object right = evaluate(exp.right);
+        switch (exp.operator.type) {
+            case MINUS:
+                return -(double)right;
+            case EXCLAIM:
+                return isTrue(right);
+        }
         return null;
     }
 
     private Object evaluate(Exp exp) {
         return exp.accept(this);
+    }
+
+    private boolean isTrue(Object object) {
+        if (object == null)
+            return false;
+
+        if (object instanceof Boolean)
+            return (boolean) object;
+            return true;
+
+    }
+    private boolean isEqual(Object a, Object b) {
+        if (a == null && b == null) return true;
+        if (a == null) return false;
+
+        return a.equals(b);
     }
 }

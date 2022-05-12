@@ -60,8 +60,8 @@ public abstract class Exp {
       this.right = right;
     }
 
-    final Token operator;
-    final Exp right;
+    public final Token operator;
+    public final Exp right;
 
       @Override
       <R> R accept(Visitor<R> visitor) {
