@@ -1,6 +1,6 @@
 
 def main:
-    print (4 + 3)
+    4+3
     if (4 >= 3):
         print 3
     else if ( 3 <= 5)
