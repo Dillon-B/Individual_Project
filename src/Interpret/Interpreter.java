@@ -5,6 +5,8 @@ import SyntaxTree.Exp;
 import SyntaxTree.Stmt;
 import TypeCheck.Token;
 
+import java.util.List;
+
 public class Interpreter implements Exp.Visitor<Object>, Stmt.Visitor<Void>{
 
     public void interpret(Exp exp) {
@@ -12,6 +14,16 @@ public class Interpreter implements Exp.Visitor<Object>, Stmt.Visitor<Void>{
             Object object = evaluate(exp);
             System.out.println(isString(object));
         } catch (RuntimeError error) {
+            Main.reportRuntimeError(error);
+        }
+    }
+
+    public void interpreter(List<Stmt> stm) {
+        try {
+            for (Stmt stmt: stm){
+                execute(stmt);
+            }
+        } catch (RuntimeError error){
             Main.reportRuntimeError(error);
         }
     }
@@ -135,5 +147,9 @@ public class Interpreter implements Exp.Visitor<Object>, Stmt.Visitor<Void>{
         Object object = evaluate(stmt.expression);
         System.out.println(isString(object));
         return null;
+    }
+
+    private void execute(Stmt stm) {
+        stm.accept(this);
     }
 }
