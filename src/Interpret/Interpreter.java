@@ -1,6 +1,7 @@
 package Interpret;
 
 import SyntaxTree.Exp;
+import TypeCheck.Token;
 
 public class Interpreter implements Exp.Visitor<Object>{
     @Override
@@ -55,6 +56,7 @@ public class Interpreter implements Exp.Visitor<Object>{
         Object right = evaluate(exp.right);
         switch (exp.operator.type) {
             case MINUS:
+                checkIfNumber(exp.operator, right);
                 return -(double)right;
             case EXCLAIM:
                 return isTrue(right);
@@ -80,5 +82,9 @@ public class Interpreter implements Exp.Visitor<Object>{
         if (a == null) return false;
 
         return a.equals(b);
+    }
+    private void checkIfNumber(Token operator, Object number){
+        if (number instanceof Double) return;
+        throw new RuntimeError(operator, "Number must be a double");
     }
 }
