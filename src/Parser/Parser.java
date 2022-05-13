@@ -5,6 +5,7 @@ import java.util.List;
 
 import Compile.Main;
 import SyntaxTree.Exp;
+import SyntaxTree.Stmt;
 import TypeCheck.Token;
 import TypeCheck.TokenType;
 import static TypeCheck.TokenType.*;
@@ -21,22 +22,22 @@ public class Parser {
         this.tokens = tokens;
     }
 
-//    List<Stmt> parse() {
-//        List<Stmt> statements = new ArrayList<>();
-//        while (!isAtEnd()) {
-//            statements.add(statement());
-//        }
-//
-//        return statements;
-//    }
-
-    public Exp parse() {
-        try {
-            return Expression();
-        } catch (ParseError error) {
-            return null;
+    List<Stmt> parse() {
+        List<Stmt> statements = new ArrayList<>();
+        while (!isAtEnd()) {
+            statements.add(statement());
         }
+
+        return statements;
     }
+
+//    public Exp parse() {
+//        try {
+//            return Expression();
+//        } catch (ParseError error) {
+//            return null;
+//        }
+//    }
 
     private Exp Expression() {
         return Op();
@@ -173,6 +174,24 @@ public class Parser {
 
     private Token lastChar() {
         return tokens.get(current-1);
+    }
+
+    private Stmt statement() {
+        if (match(PRINT)) return printStatement();
+
+        return expressionStatement();
+    }
+
+    private Stmt printStatement() {
+        Exp value = Expression();
+       // consume(SEMICOLON, "Expect ';' after value.");
+        return new Stmt.Print(value);
+    }
+
+    private Stmt expressionStatement() {
+        Exp value = Expression();
+       // consume(SEMICOLON, "Expect ';' after value.");
+        return new Stmt.Expression(value);
     }
 
 }

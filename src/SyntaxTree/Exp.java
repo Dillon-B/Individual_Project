@@ -3,72 +3,72 @@ import TypeCheck.Token;
 
 import java.util.List;
 
-abstract class Exp {
-  interface Visitor<R> {
+public abstract class Exp {
+  public interface Visitor<R> {
     R visitOpExp(Op exp);
     R visitStmExp(Stm exp);
     R visitLiteralExp(Literal exp);
     R visitEqExp(Eq exp);
   }
-  static class Op extends Exp {
-   Op(Exp left, Token operator, Exp right)  {
+  public static class Op extends Exp {
+   public Op(Exp left, Token operator, Exp right)  {
       this.left = left;
       this.operator = operator;
       this.right = right;
     }
 
-    final Exp left;
-    final Token operator;
-    final Exp right;
+    public final Exp left;
+    public final Token operator;
+    public final Exp right;
 
       @Override
-      <R> R accept(Visitor<R> visitor) {
+      public <R> R accept(Visitor<R> visitor) {
           return visitor.visitOpExp(this);
       }
   }
 
-  static class Stm extends Exp {
-   Stm(Exp expression)  {
+  public static class Stm extends Exp {
+   public Stm(Exp expression)  {
       this.expression = expression;
     }
 
-    final Exp expression;
+    public final Exp expression;
 
       @Override
-      <R> R accept(Visitor<R> visitor) {
+      public <R> R accept(Visitor<R> visitor) {
           return visitor.visitStmExp(this);
       }
   }
 
 
-  static class Literal extends Exp {
-   Literal(Object value)  {
+  public static class Literal extends Exp {
+   public Literal(Object value)  {
       this.value = value;
     }
 
-    final Object value;
+    public final Object value;
 
       @Override
-      <R> R accept(Visitor<R> visitor) {
+      public <R> R accept(Visitor<R> visitor) {
           return visitor.visitLiteralExp(this);
       }
   }
 
 
-  static class Eq extends Exp {
-   Eq(Token operator, Exp right)  {
+  public static class Eq extends Exp {
+   public Eq(Token operator, Exp right)  {
       this.operator = operator;
       this.right = right;
     }
 
-    final Token operator;
-    final Exp right;
+    public final Token operator;
+    public final Exp right;
 
       @Override
-      <R> R accept(Visitor<R> visitor) {
+      public <R> R accept(Visitor<R> visitor) {
           return visitor.visitEqExp(this);
       }
   }
 
-  abstract <R> R accept(Visitor<R> visitor);
+  public abstract <R> R accept(Visitor<R> visitor);
 }

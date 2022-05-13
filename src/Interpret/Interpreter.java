@@ -2,9 +2,10 @@ package Interpret;
 
 import Compile.Main;
 import SyntaxTree.Exp;
+import SyntaxTree.Stmt;
 import TypeCheck.Token;
 
-public class Interpreter implements Exp.Visitor<Object>{
+public class Interpreter implements Exp.Visitor<Object>, Stmt.Visitor<Void>{
 
     public void interpret(Exp exp) {
         try {
@@ -121,5 +122,18 @@ public class Interpreter implements Exp.Visitor<Object>{
             return text;
         }
         return object.toString();
+    }
+
+    @Override
+    public Void visitExpressionStmt(Stmt.Expression stmt) {
+        evaluate(stmt.expression);
+        return null;
+    }
+
+    @Override
+    public Void visitPrintStmt(Stmt.Print stmt) {
+        Object object = evaluate(stmt.expression);
+        System.out.println(isString(object));
+        return null;
     }
 }

@@ -4,17 +4,17 @@ package SyntaxTree;
 
 import java.util.List;
 
-abstract class Stmt {
-  interface Visitor<R> {
-    R visitExpressionStmt(Expression stmt);
-    R visitPrintStmt(Print stmt);
+public abstract class Stmt {
+  public interface Visitor<R> {
+  public R visitExpressionStmt(Expression stmt);
+    public R visitPrintStmt(Print stmt);
   }
-  static class Expression extends Stmt {
-   Expression(Exp expression)  {
+  public static class Expression extends Stmt {
+  public Expression(Exp expression)  {
       this.expression = expression;
     }
 
-    final Exp expression;
+    public final Exp expression;
 
       @Override
       public <R> R accept(Visitor<R> visitor) {
@@ -22,12 +22,12 @@ abstract class Stmt {
       }
   }
 
-  static class Print extends Stmt {
-   Print(Exp expression)  {
+  public static class Print extends Stmt {
+   public Print(Exp expression)  {
       this.expression = expression;
     }
 
-    final Exp expression;
+    public final Exp expression;
 
       @Override
       public <R> R accept(Visitor<R> visitor) {
