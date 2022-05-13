@@ -3,7 +3,7 @@ package Interpret;
 import TypeCheck.Token;
 
 public class RuntimeError extends RuntimeException {
-    final Token token;
+    public final Token token;
 
     RuntimeError(Token token, String message) {
         super(message);

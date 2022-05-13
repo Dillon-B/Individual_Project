@@ -1,5 +1,6 @@
 package Compile;
 
+import Interpret.RuntimeError;
 import Parser.Parser;
 import SyntaxTree.Exp;
 import SyntaxTree.printAST;
@@ -18,6 +19,7 @@ import java.util.List;
 
 public class Main {
     static boolean hasError = false;
+    static boolean hasRuntimeE = false;
     public static void main(String[] args) throws IOException {
         if (args.length > 1) {
             System.out.println("Too Many Arguments");
@@ -32,6 +34,7 @@ public class Main {
         byte[] bytes = Files.readAllBytes(Paths.get(path));
         run(new String(bytes, Charset.defaultCharset()));
         if (hasError) System.exit(65);
+        if (hasRuntimeE) System.exit(70);
     }
 
 //    private static void runPrompt() throws IOException {
@@ -68,6 +71,11 @@ public class Main {
 
     public static void error(int line, String message) {
         report(line, " " , message);
+
+    }
+    static void reportRuntimeError(RuntimeError error) {
+        System.err.println(error.getMessage() + "\n[line " + error.token.line + "]");
+        hasRuntimeE = true;
 
     }
 
