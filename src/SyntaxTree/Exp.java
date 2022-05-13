@@ -22,7 +22,7 @@ public abstract class Exp {
     public final Exp right;
 
       @Override
-      <R> R accept(Visitor<R> visitor) {
+      public <R> R accept(Visitor<R> visitor) {
           return visitor.visitOpExp(this);
       }
   }
@@ -35,7 +35,7 @@ public abstract class Exp {
     public final Exp expression;
 
       @Override
-      <R> R accept(Visitor<R> visitor) {
+     public <R> R accept(Visitor<R> visitor) {
           return visitor.visitStmExp(this);
       }
   }
@@ -48,7 +48,7 @@ public abstract class Exp {
     public final Object value;
 
       @Override
-      <R> R accept(Visitor<R> visitor) {
+     public <R> R accept(Visitor<R> visitor) {
           return visitor.visitLiteralExp(this);
       }
   }
@@ -64,7 +64,7 @@ public abstract class Exp {
     public final Exp right;
 
       @Override
-      <R> R accept(Visitor<R> visitor) {
+     public <R> R accept(Visitor<R> visitor) {
           return visitor.visitEqExp(this);
       }
   }
