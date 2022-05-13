@@ -19,13 +19,17 @@ public class generateAST {
                 "Literal : Object value",
                 "Eq : Token operator, Exp right"
         ));
+        defineAst(outputDir, "Stmt", Arrays.asList(
+                "Expression : Exp expression",
+                "Print      : Exp expression"
+        ));
     }
 
     public static void defineAst (String outputDir, String baseName, List<String> types)
             throws IOException {
         String path = outputDir + "/" + baseName + ".java";
         PrintWriter writer = new PrintWriter(path, StandardCharsets.UTF_8);
-        writer.println("Package Compile;");
+        writer.println("package Compile;");
         writer.println();
         writer.println("import java.util.List;");
         writer.println();

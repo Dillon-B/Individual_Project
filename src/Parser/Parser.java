@@ -1,5 +1,6 @@
 package Parser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Compile.Main;
@@ -19,6 +20,15 @@ public class Parser {
     public Parser(List<Token> tokens) {
         this.tokens = tokens;
     }
+
+//    List<Stmt> parse() {
+//        List<Stmt> statements = new ArrayList<>();
+//        while (!isAtEnd()) {
+//            statements.add(statement());
+//        }
+//
+//        return statements;
+//    }
 
     public Exp parse() {
         try {
