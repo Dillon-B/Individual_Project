@@ -73,7 +73,7 @@ public class Main {
         report(line, " " , message);
 
     }
-    static void reportRuntimeError(RuntimeError error) {
+    public static void reportRuntimeError(RuntimeError error) {
         System.err.println(error.getMessage() + "\n[line " + error.token.line + "]");
         hasRuntimeE = true;
 

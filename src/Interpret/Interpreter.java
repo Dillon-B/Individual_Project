@@ -1,9 +1,19 @@
 package Interpret;
 
+import Compile.Main;
 import SyntaxTree.Exp;
 import TypeCheck.Token;
 
 public class Interpreter implements Exp.Visitor<Object>{
+
+    void interpret(Exp exp) {
+        try {
+            Object object = evaluate(exp);
+            System.out.println(isString(object));
+        } catch (RuntimeError error) {
+            Main.reportRuntimeError(error);
+        }
+    }
     @Override
     public Object visitOpExp(Exp.Op exp) {
         Object left = evaluate(exp.left);
@@ -98,5 +108,18 @@ public class Interpreter implements Exp.Visitor<Object>{
     private void checkBothIfNumber(Token operator, Object left, Object right){
         if (left instanceof Double && right instanceof Double) return;
         throw new RuntimeError(operator, "Both Expressions must be Numbers or Strings");
+    }
+
+    public String isString (Object object){
+        if (object == null) return "none";
+
+        if (object instanceof Double) {
+            String text = object.toString();
+            if (text.endsWith(".0")) {
+                text = text.substring(0, text.length() - 2);
+            }
+            return text;
+        }
+        return object.toString();
     }
 }
