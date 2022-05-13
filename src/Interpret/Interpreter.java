@@ -32,8 +32,8 @@ public class Interpreter implements Exp.Visitor<Object>{
                     return (double)left + (double)right;
                 }
 
-                if (left instanceof String && right instanceof String) {
-                    return (String)left + (String)right;
+                else if (left instanceof String && right instanceof String) {
+                    return left + (String)right;
                 }
                 break;
         }
