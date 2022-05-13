@@ -15,18 +15,25 @@ public class Interpreter implements Exp.Visitor<Object>{
             case EQUALEQUAL:
                 return isEqual(left, right);
             case GREATERTHAN:
+                checkBothIfNumber(exp.operator, left, right);
                 return (double)left > (double)right;
             case GREATEREQUAL:
+                checkBothIfNumber(exp.operator, left, right);
                 return (double)left >= (double)right;
             case LESSTHAN:
+                checkBothIfNumber(exp.operator, left, right);
                 return (double)left < (double)right;
             case LESSEQUAL:
+                checkBothIfNumber(exp.operator, left, right);
                 return (double)left <= (double)right;
             case MINUS:
+                checkBothIfNumber(exp.operator, left, right);
                 return (double)left - (double)right;
             case MULTIPLY:
+                checkBothIfNumber(exp.operator, left, right);
                 return (double)left * (double)right;
             case DIVIDE:
+                checkBothIfNumber(exp.operator, left, right);
                 return (double)left / (double)right;
             case PLUS:
                 if (left instanceof Double && right instanceof Double) {
@@ -86,5 +93,10 @@ public class Interpreter implements Exp.Visitor<Object>{
     private void checkIfNumber(Token operator, Object number){
         if (number instanceof Double) return;
         throw new RuntimeError(operator, "Number must be a double");
+    }
+
+    private void checkBothIfNumber(Token operator, Object left, Object right){
+        if (left instanceof Double && right instanceof Double) return;
+        throw new RuntimeError(operator, "Both Expressions must be Numbers or Strings");
     }
 }
