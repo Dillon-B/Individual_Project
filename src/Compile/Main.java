@@ -1,5 +1,6 @@
 package Compile;
 
+import Interpret.Interpreter;
 import Interpret.RuntimeError;
 import Parser.Parser;
 import SyntaxTree.Exp;
@@ -18,6 +19,7 @@ import java.util.List;
 
 
 public class Main {
+    private static final Interpreter interpret = new Interpreter();
     static boolean hasError = false;
     static boolean hasRuntimeE = false;
     public static void main(String[] args) throws IOException {
@@ -62,7 +64,8 @@ public class Main {
         Exp expression = parser.parse();
 
         // Stop if there was a syntax error.
-        if (hasError) return;
+        //if (hasError) return;
+        interpret.interpret(expression);
 
         System.out.println(new printAST().print(expression));
         }

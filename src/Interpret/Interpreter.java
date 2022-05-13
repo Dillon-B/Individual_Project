@@ -6,7 +6,7 @@ import TypeCheck.Token;
 
 public class Interpreter implements Exp.Visitor<Object>{
 
-    void interpret(Exp exp) {
+    public void interpret(Exp exp) {
         try {
             Object object = evaluate(exp);
             System.out.println(isString(object));
