@@ -29,7 +29,7 @@ public class generateAST {
             throws IOException {
         String path = outputDir + "/" + baseName + ".java";
         PrintWriter writer = new PrintWriter(path, StandardCharsets.UTF_8);
-        writer.println("package Compile;");
+        writer.println("package SyntaxTree;");
         writer.println();
         writer.println("import java.util.List;");
         writer.println();
