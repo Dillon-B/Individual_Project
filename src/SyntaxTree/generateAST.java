@@ -21,7 +21,9 @@ public class generateAST {
         ));
         defineAst(outputDir, "Stmt", Arrays.asList(
                 "Expression : Exp expression",
-                "Print      : Exp expression"
+                "Print      : Exp expression",
+                "If         : Expr condition, Stmt thenBranch," +
+                        " Stmt elseBranch"
         ));
     }
 
