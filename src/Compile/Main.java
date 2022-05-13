@@ -4,6 +4,7 @@ import Interpret.Interpreter;
 import Interpret.RuntimeError;
 import Parser.Parser;
 import SyntaxTree.Exp;
+import SyntaxTree.Stmt;
 import SyntaxTree.printAST;
 import TypeCheck.Token;
 import Scan.Scanner;
@@ -61,13 +62,14 @@ public class Main {
             System.out.println(token);
         }
         Parser parser = new Parser(tokens);
-        Exp expression = parser.parse();
+        //Exp expression = parser.parse();
+        List<Stmt> stms = parser.parse();
 
         // Stop if there was a syntax error.
         //if (hasError) return;
-        interpret.interpret(expression);
+        interpret.interpreter(stms);
 
-        System.out.println(new printAST().print(expression));
+       // System.out.println(new printAST().print(expression));
         }
 
 
