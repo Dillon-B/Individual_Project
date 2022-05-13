@@ -149,6 +149,16 @@ public class Interpreter implements Exp.Visitor<Object>, Stmt.Visitor<Void>{
         return null;
     }
 
+    @Override
+    public Void visitIfStmt(Stmt.StmIf stmt) {
+        if (isTrue(evaluate(stmt.condition))) {
+            execute(stmt.ifBranch);
+        } else if (stmt.elseBranch != null) {
+            execute(stmt.elseBranch);
+        }
+        return null;
+    }
+
     private void execute(Stmt stm) {
         stm.accept(this);
     }

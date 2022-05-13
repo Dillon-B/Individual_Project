@@ -177,6 +177,7 @@ public class Parser {
     }
 
     private Stmt statement() {
+        if (match(IF)) return ifStatement();
         if (match(PRINT)) return printStatement();
 
         return expressionStatement();
@@ -192,6 +193,20 @@ public class Parser {
         Exp value = Expression();
        // consume(SEMICOLON, "Expect ';' after value.");
         return new Stmt.Expression(value);
+    }
+
+    private Stmt ifStatement() {
+        consume(LBR, "Expect '(' after 'if'.");
+        Exp condition = Expression();
+        consume(RBR, "Expect ')' after if condition.");
+
+        Stmt thenBranch = statement();
+        Stmt elseBranch = null;
+        if (match(ELSE)) {
+            elseBranch = statement();
+        }
+
+        return new Stmt.StmIf(condition, thenBranch, elseBranch);
     }
 
 }
