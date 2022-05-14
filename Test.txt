@@ -1,5 +1,5 @@
 
-def main:
+
     4+3
     if (4 >= 3):
          3
@@ -7,4 +7,3 @@ def main:
          4
     else
          5
-    return 50
