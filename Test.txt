@@ -1,4 +1,7 @@
 
 
-    4+3
+   if (4 > 3)
+   print 4 + 3
+   else
+   print 4 - 3
 

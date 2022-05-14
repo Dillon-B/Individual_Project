@@ -58,9 +58,9 @@ public class Main {
         List<Token> tokens = scanner.scanTokens();
 //
 //
-        for (Token token : tokens) {
-            System.out.println(token);
-        }
+      //  for (Token token : tokens) {
+      //      System.out.println(token);
+      //  }
         Parser parser = new Parser(tokens);
         //Exp expression = parser.parse();
         List<Stmt> stms = parser.parse();
