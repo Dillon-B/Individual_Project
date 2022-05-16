@@ -71,12 +71,6 @@ public class Main {
         System.err.println("[Line" + line + "] Error" + pos + ": " + message );
     }
 
-    static void reportError(Token token, String message) {
-        if (token.type == TokenType.EOF) {
-            report(token.line, " at end", message);
-        } else {
-            report(token.line, " at '" + token.lex + "'", message);
-        }
-    }
+
 
 }
