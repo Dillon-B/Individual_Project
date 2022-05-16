@@ -9,15 +9,6 @@ import java.util.List;
 
 public class Interpreter implements Exp.Visitor<Object>, Stmt.Visitor<Void>{
 
-    public void interpret(Exp exp) {
-        try {
-            Object object = evaluate(exp);
-            System.out.println(isString(object));
-        } catch (RuntimeError error) {
-            Main.reportRuntimeError(error);
-        }
-    }
-
     public void interpreter(List<Stmt> stm) {
         try {
             for (Stmt stmt: stm){
