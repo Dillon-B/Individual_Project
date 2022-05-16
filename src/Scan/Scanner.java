@@ -203,6 +203,5 @@ public class Scanner {
         if (type == null) type = ID;
         addToken(type);
 
-       // addToken(ID);
     }
 }
