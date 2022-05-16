@@ -40,18 +40,6 @@ public class Main {
         if (hasRuntimeE) System.exit(70);
     }
 
-//    private static void runPrompt() throws IOException {
-//        InputStreamReader input = new InputStreamReader(System.in);
-//        BufferedReader reader = new BufferedReader(input);
-//
-//        for (; ; ) {
-//            System.out.print("> ");
-//            String line = reader.readLine();
-//            if (line == null) break;
-//            run(line);
-//            hasError = false;
-//        }
-//    }
 
     private static void run(String source) {
         Scanner scanner = new Scanner(source);
