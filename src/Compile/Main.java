@@ -44,20 +44,15 @@ public class Main {
     private static void run(String source) {
         Scanner scanner = new Scanner(source);
         List<Token> tokens = scanner.scanTokens();
-//
-//
-      //  for (Token token : tokens) {
-      //      System.out.println(token);
-      //  }
+
         Parser parser = new Parser(tokens);
-        //Exp expression = parser.parse();
+
         List<Stmt> stms = parser.parse();
 
-        // Stop if there was a syntax error.
-        //if (hasError) return;
+
         interpret.interpreter(stms);
 
-       // System.out.println(new printAST().print(expression));
+
         }
 
 
